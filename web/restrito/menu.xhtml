@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+    <ui:define name="titulo">Pós Graduação Web e Mobile 2015</ui:define>              
+    <ui:define name="conteudo">
+        <div align="rigth" style="margin-top: 5px; margin-right: 5px;" >            
+            <a href="#{facesContext.externalContext.requestContextPath}/j_spring_security_logout">
+                <span>#{(facesContext.externalContext.remoteUser).toUpperCase()}</span>
+                <input class="btn btn-lg btn-primary btn-block" type="button" value="Sair" style="width: 100px;height: 60px;"/>
+            </a>
+        </div>
+        <br/>
+        <div align="center">
+            <h:form id="formPrincipal">
+                <p:dataTable 
+                    id="tabelaUsuarios" style="width:70%">
+                    <f:facet name="header">Menu para escolha de cadastro</f:facet>
+                </p:dataTable><br/>
+                <p:commandButton value="Cadastrar Pessoas" id="cadastrar"
+                   action="#{menuBean.cadastroPessoa()}"/>
+
+            <p:commandButton value="Cadastrar Usuários" id="cadastrarUsuario"
+                             action="#{menuBean.cadastroUsuario()}" />
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>
