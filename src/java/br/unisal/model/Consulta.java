@@ -65,21 +65,53 @@ public class Consulta implements Serializable {
         this.idConsulta = idConsulta;
     }
 
-//    public String getNome() {
-//        return nome;
-//    }
-//
-//    public void setNome(String nome) {
-//        this.nome = nome;
-//    }
-//
-//    public String getEmail() {
-//        return email;
-//    }
-//
-//    public void setEmail(String email) {
-//        this.email = email;
-//    }
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+
+    public Date getHora() {
+        return hora;
+    }
+
+    public void setHora(Date hora) {
+        this.hora = hora;
+    }
+
+    public Integer getIdMedicoConsulta() {
+        return idMedicoConsulta;
+    }
+
+    public void setIdMedicoConsulta(Integer idMedicoConsulta) {
+        this.idMedicoConsulta = idMedicoConsulta;
+    }
+
+    public Integer getIdPacienteConsulta() {
+        return idPacienteConsulta;
+    }
+
+    public void setIdPacienteConsulta(Integer idPacienteConsulta) {
+        this.idPacienteConsulta = idPacienteConsulta;
+    }
+
+    public String getObs() {
+        return obs;
+    }
+
+    public void setObs(String obs) {
+        this.obs = obs;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
 
     public Medico getMedico() {
         return medico;
@@ -122,9 +154,9 @@ public class Consulta implements Serializable {
 
     @Override
     public String toString() {
-        return "Consulta{" + "idConsulta=" + idConsulta + ", nome=" + nome + 
-                ", email=" + email + '}';
+        return "Consulta{" + "idConsulta=" + idConsulta + ", data=" + data + 
+                ", hora=" + hora + ", idMedicoConsulta=" + idMedicoConsulta + 
+                ", idPacienteConsulta=" + idPacienteConsulta + 
+                ", obs=" + obs + ", estatus=" + status +'}';
     }
-    
-    
 }
