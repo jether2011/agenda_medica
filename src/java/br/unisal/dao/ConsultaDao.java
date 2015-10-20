@@ -20,12 +20,12 @@ import org.hibernate.Transaction;
  */
 public class ConsultaDao{
 
-    public void insert(Consulta s) {
+    public void insert(Consulta c) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
         try {
             tx.begin();
-            session.save(s);
+            session.save(c);
             tx.commit();
         } catch (HibernateException e) {
             System.out.println("Exception ConsultaDao.insert(): " + e.getMessage());
@@ -35,12 +35,12 @@ public class ConsultaDao{
         }
     }
     
-    public void update(Consulta s) {
+    public void update(Consulta c) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
         try {
             tx.begin();
-            session.update(s);
+            session.update(c);
             tx.commit();
         } catch (HibernateException e) {
             System.out.println("Exception ConsultaDao.update(): " + e.getMessage());
@@ -68,7 +68,7 @@ public class ConsultaDao{
         return consultas;
     }
     
-    public Consulta getById(Consulta s) {
+    public Consulta getById(Consulta c) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
         Consulta consulta = new Consulta();
@@ -76,7 +76,7 @@ public class ConsultaDao{
             tx.begin();
             Query query = session
                     .createQuery("FROM Consulta WHERE idConsulta = :id");
-            query.setParameter("id", s.getIdConsulta());
+            query.setParameter("id", c.getIdConsulta());
             consulta = (Consulta) query.uniqueResult();
             tx.commit();
         } catch (HibernateException e) {
@@ -88,12 +88,12 @@ public class ConsultaDao{
         return consulta;
     }
 
-    public void remove(Consulta s) {
+    public void remove(Consulta c) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
         try {
             tx.begin();
-            session.delete(s);
+            session.delete(c);
             tx.commit();
         } catch (HibernateException e) {
             System.out.println("Exception ConsultaDao.remove(): " + e.getMessage());

@@ -20,12 +20,12 @@ import org.hibernate.Transaction;
  */
 public class MedicoDao{
 
-    public void insert(Medico s) {
+    public void insert(Medico m) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
         try {
             tx.begin();
-            session.save(s);
+            session.save(m);
             tx.commit();
         } catch (HibernateException e) {
             System.out.println("Exception MedicoDao.insert(): " + e.getMessage());
@@ -35,12 +35,12 @@ public class MedicoDao{
         }
     }
     
-    public void update(Medico s) {
+    public void update(Medico m) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
         try {
             tx.begin();
-            session.update(s);
+            session.update(m);
             tx.commit();
         } catch (HibernateException e) {
             System.out.println("Exception MedicoDao.update(): " + e.getMessage());
@@ -68,7 +68,7 @@ public class MedicoDao{
         return medicos;
     }
     
-    public Medico getById(Medico s) {
+    public Medico getById(Medico m) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
         Medico medico = new Medico();
@@ -76,7 +76,7 @@ public class MedicoDao{
             tx.begin();
             Query query = session
                     .createQuery("FROM Medico WHERE idMedico = :id");
-            query.setParameter("id", s.getIdMedico());
+            query.setParameter("id", m.getIdMedico());
             medico = (Medico) query.uniqueResult();
             tx.commit();
         } catch (HibernateException e) {
@@ -88,12 +88,12 @@ public class MedicoDao{
         return medico;
     }
 
-    public void remove(Medico s) {
+    public void remove(Medico m) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
         try {
             tx.begin();
-            session.delete(s);
+            session.delete(m);
             tx.commit();
         } catch (HibernateException e) {
             System.out.println("Exception MedicoDao.remove(): " + e.getMessage());
