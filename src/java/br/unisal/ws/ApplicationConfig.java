@@ -30,7 +30,7 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
 //        resources.add(br.unisal.ws.CalcResource.class);
-        resources.add(br.unisal.ws.MedicoResource.class);
+        resources.add(br.unisal.ws.ConsultaResource.class);
     }
     
 }

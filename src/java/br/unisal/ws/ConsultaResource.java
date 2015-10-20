@@ -5,8 +5,8 @@
  */
 package br.unisal.ws;
 
-import br.unisal.dao.MedicoDao;
-import br.unisal.model.Medico;
+import br.unisal.dao.ConsultaDao;
+import br.unisal.model.Consulta;
 import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -27,31 +27,31 @@ import javax.ws.rs.core.Response;
  *
  * @author pensadorx
  */
-@Path("medico")
-public class MedicoResource {
+@Path("consulta")
+public class ConsultaResource {
 
     @Context
     private UriInfo context;
-    private MedicoDao dao;
+    private ConsultaDao dao;
 
     /**
-     * Creates a new instance of MedicoResource
+     * Creates a new instance of ConsultaResource
      */
-    public MedicoResource() {
+    public ConsultaResource() {
     }
 
     /**
-     * Retrieves representation of an instance of br.unisal.ws.MedicoResource
+     * Retrieves representation of an instance of br.unisal.ws.ConsultaResource
      *
-     * @return an instance of br.unisal.model.Medico
+     * @return an instance of br.unisal.model.Consulta
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getMedicos() {
-        GenericEntity<List<Medico>> medicos
-                = new GenericEntity<List<Medico>>(getDao().getAll()) {
+    public Response getConsultas() {
+        GenericEntity<List<Consulta>> consultas
+                = new GenericEntity<List<Consulta>>(getDao().getAll()) {
                 };
-        return Response.ok(medicos)
+        return Response.ok(consultas)
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With")
                 .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, OPTIONS, HEAD")
@@ -59,7 +59,7 @@ public class MedicoResource {
     }
 
     /**
-     * PUT method for updating or creating an instance of MedicoResource
+     * PUT method for updating or creating an instance of ConsultaResource
      *
      * @param id
      * @param content representation for the resource
@@ -68,9 +68,9 @@ public class MedicoResource {
     @GET
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getMedico(@PathParam("id") Integer id) {
-        Medico p = new Medico();
-        p.setIdMedico(id);
+    public Response getConsulta(@PathParam("id") Integer id) {
+        Consulta p = new Consulta();
+        p.setIdConsulta(id);
         return Response.ok(getDao().getById(p))
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With")
@@ -81,9 +81,9 @@ public class MedicoResource {
     @DELETE
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteMedico(@PathParam("id") Integer id) {
-        Medico p = new Medico();
-        p.setIdMedico(id);
+    public Response deleteConsulta(@PathParam("id") Integer id) {
+        Consulta p = new Consulta();
+        p.setIdConsulta(id);
         getDao().remove(p);
         String msg = "{\"msg\":\"Exclusão realizada com sucesso!\"}";
         return Response.ok(msg)
@@ -97,8 +97,8 @@ public class MedicoResource {
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response updateMedico(Medico p, @PathParam("id") Integer id) {
-        p.setIdMedico(id);
+    public Response updateConsulta(Consulta p, @PathParam("id") Integer id) {
+        p.setIdConsulta(id);
         getDao().update(p);
         String msg = "{\"msg\":\"Atualização realizada com sucesso!\"}";
         return Response.ok(msg)
@@ -111,7 +111,7 @@ public class MedicoResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createMedico(Medico p) {
+    public Response createConsulta(Consulta p) {
         getDao().insert(p);
         String msg = "{\"msg\":\"Inserção realizada com sucesso!\"}";
         return Response.ok(msg)
@@ -121,9 +121,9 @@ public class MedicoResource {
                 .build();
     }
 
-    public MedicoDao getDao() {
+    public ConsultaDao getDao() {
         if (dao == null) {
-            dao = new MedicoDao();
+            dao = new ConsultaDao();
         }
         return dao;
     }
