@@ -32,8 +32,16 @@ public class Medico implements Serializable {
     private Integer idMedico;
     @Column(length = 155, name="nome_medico")
     private String nome;
+    @Column(name="cpf_medico")
+    private Double cpf;
+    @Column(name="rg_medico")
+    private Double rg;
     @Column(length = 155, name="email_medico")
     private String email;
+    @Column(name ="cmr_medico")
+    private Double crm;
+    @Column(length = 255, name="especialidade_medico")
+    private String especialidade;
 
     public Medico() {
     }
@@ -54,6 +62,22 @@ public class Medico implements Serializable {
         this.nome = nome;
     }
 
+    public Double getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(Double cpf) {
+        this.cpf = cpf;
+    }
+
+    public Double getRg() {
+        return rg;
+    }
+
+    public void setRg(Double rg) {
+        this.rg = rg;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -62,6 +86,22 @@ public class Medico implements Serializable {
         this.email = email;
     }
 
+    public Double getCrm() {
+        return crm;
+    }
+
+    public void setCrm(Double crm) {
+        this.crm = crm;
+    }
+
+    public String getEspecialidade() {
+        return especialidade;
+    }
+
+    public void setEspecialidade(String especialidade) {
+        this.especialidade = especialidade;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 3;
@@ -88,8 +128,7 @@ public class Medico implements Serializable {
     @Override
     public String toString() {
         return "Medico{" + "idMedico=" + idMedico + ", nome=" + nome + 
-                ", email=" + email + '}';
+                ", cpf=" + cpf + ", rg=" + rg + ", email=" + email + 
+                ", crm=" + crm + ", especialidade=" + especialidade +'}';
     }
-    
-    
 }

@@ -34,6 +34,16 @@ public class Paciente implements Serializable {
     private String nome;
     @Column(length = 155, name="email_paciente")
     private String email;
+    @Column(name="telefone_paciente")
+    private Double telefone;
+    @Column(name="cpf_paciente")
+    private Double cpf;
+    @Column(name="rg_paciente")
+    private Double rg;
+    @Column(name="sexo_paciente")
+    private String sexo;
+    @Column(length = 255, name="endereco_paciente")
+    private String endereco;
 
     public Paciente() {
     }
@@ -62,6 +72,46 @@ public class Paciente implements Serializable {
         this.email = email;
     }
 
+    public Double getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(Double telefone) {
+        this.telefone = telefone;
+    }
+
+    public Double getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(Double cpf) {
+        this.cpf = cpf;
+    }
+
+    public Double getRg() {
+        return rg;
+    }
+
+    public void setRg(Double rg) {
+        this.rg = rg;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 3;
@@ -87,8 +137,8 @@ public class Paciente implements Serializable {
     @Override
     public String toString() {
         return "Paciente{" + "idPaciente=" + idPaciente + ", nome=" + nome + 
-                ", email=" + email + '}';
+                ", email=" + email + ", telefone=" + telefone + 
+                ", cpf=" + cpf + ", rg=" + rg + ", sexo=" + sexo + 
+                ", endereco=" + endereco +'}';
     }
-    
-    
 }
