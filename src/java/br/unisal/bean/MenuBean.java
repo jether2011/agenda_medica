@@ -22,7 +22,7 @@ public class MenuBean implements Serializable{
     public MenuBean() {        
     }
     //Métodos dos botões 
-    public String cadastroPessoa() {      
+    public String cadastroMedico() {      
             return "/restrito/inicio?faces-redirect=true";
     }
 

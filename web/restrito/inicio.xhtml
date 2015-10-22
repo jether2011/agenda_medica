@@ -15,9 +15,9 @@
         <br/>
         <div align="center">
             <h:form id="formPrincipal">
-                <p:dataTable var="lista" value="#{pessoaBean.pessoas}"
-                             id="tabelaPessoas" style="width:70%">
-                    <f:facet name="header">Lista de Pessoas Cadastradas</f:facet>
+                <p:dataTable var="lista" value="#{medicoBean.medicos}"
+                             id="tabelaMedicos" style="width:70%">
+                    <f:facet name="header">Lista de Medicos Cadastradas</f:facet>
                     <p:column headerText="Nome">
                         <h:outputText value="#{lista.nome}" />
                     </p:column>
@@ -28,13 +28,13 @@
                         <p:commandLink title="Alterar" update=":formAlterar:Alterar"
                                        oncomplete="PF('dialogAlterar').show()" immediate="true">
                             <h:graphicImage library="img" name="edit.png" />
-                            <f:setPropertyActionListener target="#{pessoaBean.pessoa}"
+                            <f:setPropertyActionListener target="#{medicoBean.medico}"
                                                          value="#{lista}" />
                         </p:commandLink>
                         <p:commandLink title="Excluir" update=":formExcluir:Excluir"
                                        oncomplete="PF('confirmation').show()" immediate="true">
                             <h:graphicImage library="img" name="remove.png" />
-                            <f:setPropertyActionListener target="#{pessoaBean.pessoa}"
+                            <f:setPropertyActionListener target="#{medicoBean.medico}"
                                                          value="#{lista}" />
                         </p:commandLink>
                     </p:column>
@@ -42,7 +42,7 @@
                 <p:commandButton value="Cadastrar" id="cadastrar"
                                  oncomplete="PF('dialogCadastrar').show()" />
                 <p:commandButton value="Voltar ao Menu" id="backMenu"
-                   action="#{pessoaBean.backMenu()}"/>
+                   action="#{medicoBean.backMenu()}"/>
             </h:form>
         </div>
         <h:form id="formAlterar">
@@ -50,15 +50,15 @@
                       id="Alterar">
                 <p:panelGrid id="panelAlterar" columns="2">
                     <h:outputText value="Nome:" />
-                    <p:inputText value="#{pessoaBean.pessoa.nome}" />
+                    <p:inputText value="#{medicoBean.medico.nome}" />
                     <h:outputText value="Email:" />
-                    <p:inputText value="#{pessoaBean.pessoa.email}" />
+                    <p:inputText value="#{medicoBean.medico.email}" />
                     <h:outputText value="Telefone:" />
-                    <!--<p:inputText value="{pessoaBean.pessoa.telefone}" />-->
+                    <!--<p:inputText value="{medicoBean.medico.telefone}" />-->
                 </p:panelGrid>
                 <p:commandButton value="Alterar"
-                                 actionListener="#{pessoaBean.alterar}"
-                                 update=":formPrincipal:tabelaPessoas"
+                                 actionListener="#{medicoBean.alterar}"
+                                 update=":formPrincipal:tabelaMedicos"
                                  oncomplete="PF('dialogAlterar').hide()" />
             </p:dialog>
         </h:form>
@@ -67,27 +67,27 @@
             <p:dialog header="Cadastrar" widgetVar="dialogCadastrar" modal="true">
                 <p:panelGrid id="panelCadastrar" columns="2">
                     <h:outputText value="Nome:" />
-                    <p:inputText value="#{pessoaBean.pessoa.nome}" />
+                    <p:inputText value="#{medicoBean.medico.nome}" />
                     <h:outputText value="Email:" />
-                    <p:inputText value="#{pessoaBean.pessoa.email}" />
+                    <p:inputText value="#{medicoBean.medico.email}" />
                     <h:outputText value="Telefone:" />
-                    <!--<p:inputText value="{pessoaBean.pessoa.telefone}" />-->
+                    <!--<p:inputText value="{medicoBean.medico.telefone}" />-->
                 </p:panelGrid>
                 <p:commandButton value="Cadastrar"
-                                 actionListener="#{pessoaBean.cadastrar}"
-                                 update=":formPrincipal:tabelaPessoas"
+                                 actionListener="#{medicoBean.cadastrar}"
+                                 update=":formPrincipal:tabelaMedicos"
                                  oncomplete="PF('dialogCadastrar').hide()" />
             </p:dialog>
         </h:form>
         <h:form id="formExcluir">
             <p:confirmDialog id="Excluir"
-                             message="Você gostaria de Deletar o #{pessoaBean.pessoa.nome}?"
+                             message="Você gostaria de Deletar o #{medicoBean.medico.nome}?"
                              header="Excluir" severity="alert" widgetVar="confirmation">
 
                 <p:commandButton id="confirm" value="Sim"
                                  oncomplete="PF('confirmation').hide()"
-                                 actionListener="#{pessoaBean.excluir}"
-                                 update=":formPrincipal:tabelaPessoas" />
+                                 actionListener="#{medicoBean.excluir}"
+                                 update=":formPrincipal:tabelaMedicos" />
                 <p:commandButton id="decline" value="Não"
                                  onclick="PF('confirmation').hide()" type="button" />
             </p:confirmDialog>
