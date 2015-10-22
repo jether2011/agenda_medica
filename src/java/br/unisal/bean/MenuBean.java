@@ -23,10 +23,18 @@ public class MenuBean implements Serializable{
     }
     //Métodos dos botões 
     public String cadastroMedico() {      
-            return "/restrito/inicio?faces-redirect=true";
+            return "/restrito/cadMedico?faces-redirect=true";
     }
 
     public String cadastroUsuario() {      
-            return "/restrito/usuario?faces-redirect=true";
+            return "/restrito/cadUsuario?faces-redirect=true";
+    }
+    
+    public String cadastroPaciente() {      
+            return "/restrito/cadPaciente?faces-redirect=true";
+    }
+    
+    public String cadastroConsulta() {      
+            return "/restrito/cadConsulta?faces-redirect=true";
     }
 }

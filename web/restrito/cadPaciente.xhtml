@@ -15,11 +15,20 @@
         <br/>
         <div align="center">
             <h:form id="formPrincipal">
-                <p:dataTable var="lista" value="#{medicoBean.medicos}"
-                             id="tabelaMedicos" style="width:70%">
-                    <f:facet name="header">Lista de Medicos Cadastradas</f:facet>
+                <p:dataTable var="lista" value="#{pacienteBean.pacientes}"
+                             id="tabelaPacientes" style="width:70%">
+                    <f:facet name="header">Lista de Pacientes Cadastradas</f:facet>
                     <p:column headerText="Nome">
                         <h:outputText value="#{lista.nome}" />
+                    </p:column>
+                    <p:column headerText="CRM">
+                        <h:outputText value="#{lista.crm}" />
+                    </p:column>
+                    <p:column headerText="Especialidade">
+                        <h:outputText value="#{lista.especialidade}" />
+                    </p:column>
+                    <p:column headerText="Telefone">
+                        <h:outputText value="#{lista.telefone}" />
                     </p:column>
                     <p:column headerText="Email">
                         <h:outputText value="#{lista.email}" />
@@ -28,13 +37,13 @@
                         <p:commandLink title="Alterar" update=":formAlterar:Alterar"
                                        oncomplete="PF('dialogAlterar').show()" immediate="true">
                             <h:graphicImage library="img" name="edit.png" />
-                            <f:setPropertyActionListener target="#{medicoBean.medico}"
+                            <f:setPropertyActionListener target="#{pacienteBean.paciente}"
                                                          value="#{lista}" />
                         </p:commandLink>
                         <p:commandLink title="Excluir" update=":formExcluir:Excluir"
                                        oncomplete="PF('confirmation').show()" immediate="true">
                             <h:graphicImage library="img" name="remove.png" />
-                            <f:setPropertyActionListener target="#{medicoBean.medico}"
+                            <f:setPropertyActionListener target="#{pacienteBean.paciente}"
                                                          value="#{lista}" />
                         </p:commandLink>
                     </p:column>
@@ -42,7 +51,7 @@
                 <p:commandButton value="Cadastrar" id="cadastrar"
                                  oncomplete="PF('dialogCadastrar').show()" />
                 <p:commandButton value="Voltar ao Menu" id="backMenu"
-                   action="#{medicoBean.backMenu()}"/>
+                   action="#{pacienteBean.backMenu()}"/>
             </h:form>
         </div>
         <h:form id="formAlterar">
@@ -50,15 +59,15 @@
                       id="Alterar">
                 <p:panelGrid id="panelAlterar" columns="2">
                     <h:outputText value="Nome:" />
-                    <p:inputText value="#{medicoBean.medico.nome}" />
+                    <p:inputText value="#{pacienteBean.paciente.nome}" />
                     <h:outputText value="Email:" />
-                    <p:inputText value="#{medicoBean.medico.email}" />
+                    <p:inputText value="#{pacienteBean.paciente.email}" />
                     <h:outputText value="Telefone:" />
-                    <!--<p:inputText value="{medicoBean.medico.telefone}" />-->
+                    <!--<p:inputText value="{pacienteBean.paciente.telefone}" />-->
                 </p:panelGrid>
                 <p:commandButton value="Alterar"
-                                 actionListener="#{medicoBean.alterar}"
-                                 update=":formPrincipal:tabelaMedicos"
+                                 actionListener="#{pacienteBean.alterar}"
+                                 update=":formPrincipal:tabelaPacientes"
                                  oncomplete="PF('dialogAlterar').hide()" />
             </p:dialog>
         </h:form>
@@ -67,27 +76,35 @@
             <p:dialog header="Cadastrar" widgetVar="dialogCadastrar" modal="true">
                 <p:panelGrid id="panelCadastrar" columns="2">
                     <h:outputText value="Nome:" />
-                    <p:inputText value="#{medicoBean.medico.nome}" />
+                    <p:inputText value="#{pacienteBean.paciente.nome}" />
+                    <h:outputText value="CPF:" />
+                    <p:inputText value="#{pacienteBean.paciente.cpf}" />
+                    <h:outputText value="RG:" />
+                    <p:inputText value="#{pacienteBean.paciente.rg}" />
+                    <h:outputText value="CRM:" />
+                    <p:inputText value="#{pacienteBean.paciente.crm}" />
+                    <h:outputText value="Especialidade:" />
+                    <p:inputText value="#{pacienteBean.paciente.especialidade}" />
                     <h:outputText value="Email:" />
-                    <p:inputText value="#{medicoBean.medico.email}" />
+                    <p:inputText value="#{pacienteBean.paciente.email}" />
                     <h:outputText value="Telefone:" />
-                    <!--<p:inputText value="{medicoBean.medico.telefone}" />-->
+                    <p:inputText value="#{pacienteBean.paciente.telefone}" />
                 </p:panelGrid>
                 <p:commandButton value="Cadastrar"
-                                 actionListener="#{medicoBean.cadastrar}"
-                                 update=":formPrincipal:tabelaMedicos"
+                                 actionListener="#{pacienteBean.cadastrar}"
+                                 update=":formPrincipal:tabelaPacientes"
                                  oncomplete="PF('dialogCadastrar').hide()" />
             </p:dialog>
         </h:form>
         <h:form id="formExcluir">
             <p:confirmDialog id="Excluir"
-                             message="Você gostaria de Deletar o #{medicoBean.medico.nome}?"
+                             message="Você gostaria de Deletar o #{pacienteBean.paciente.nome}?"
                              header="Excluir" severity="alert" widgetVar="confirmation">
 
                 <p:commandButton id="confirm" value="Sim"
                                  oncomplete="PF('confirmation').hide()"
-                                 actionListener="#{medicoBean.excluir}"
-                                 update=":formPrincipal:tabelaMedicos" />
+                                 actionListener="#{pacienteBean.excluir}"
+                                 update=":formPrincipal:tabelaPacientes" />
                 <p:commandButton id="decline" value="Não"
                                  onclick="PF('confirmation').hide()" type="button" />
             </p:confirmDialog>

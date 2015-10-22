@@ -17,7 +17,7 @@
     <authentication-manager>
         <authentication-provider>
             <password-encoder hash="sha"/>           
-            <jdbc-user-service data-source-ref="dwmDS"
+            <jdbc-user-service data-source-ref="dwmAM"
 			authorities-by-username-query="SELECT u.login,u.permissao 
                         FROM usuario u WHERE u.login = ?"
 			users-by-username-query="SELECT login, senha, ativo

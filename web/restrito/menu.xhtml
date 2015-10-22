@@ -19,11 +19,14 @@
                     id="tabelaUsuarios" style="width:70%">
                     <f:facet name="header">Menu para escolha de cadastro</f:facet>
                 </p:dataTable><br/>
-                <p:commandButton value="Cadastrar Medicos" id="cadastrar"
-                   action="#{menuBean.cadastroMedico()}"/>
-
-            <p:commandButton value="Cadastrar Usuários" id="cadastrarUsuario"
-                             action="#{menuBean.cadastroUsuario()}" />
+                <p:commandButton value="Cadastrar Usuários" id="cadastrarUsuario"
+                    action="#{menuBean.cadastroUsuario()}" />
+                <p:commandButton value="Cadastrar Medicos" id="cadastrarMedico"
+                    action="#{menuBean.cadastroMedico()}"/>
+                <p:commandButton value="Cadastrar Pacientes" id="cadastrarPaciente"
+                    action="#{menuBean.cadastroPaciente()}" />
+                <p:commandButton value="Cadastrar Consultas" id="cadastrarConsulta"
+                    action="#{menuBean.cadastroConsulta()}" />
             </h:form>
         </div>
     </ui:define>

@@ -8,7 +8,7 @@
             <value>/WEB-INF/datasource.properties</value>
         </property>
     </bean>     
-    <bean id="dwmDS" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <bean id="dwmAM" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${jdbc.driverClassName}" />
         <property name="url" value="${jdbc.url}" />
         <property name="username" value="${jdbc.username}" />

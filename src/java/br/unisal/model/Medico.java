@@ -42,6 +42,10 @@ public class Medico implements Serializable {
     private Double crm;
     @Column(length = 255, name="especialidade_medico")
     private String especialidade;
+    @Column(length = 255, name="telefone_medico")
+    private String telefone;
+    @Column(length = 255, name="endereco_medico")
+    private String endereco;
 
     public Medico() {
     }
@@ -101,6 +105,23 @@ public class Medico implements Serializable {
     public void setEspecialidade(String especialidade) {
         this.especialidade = especialidade;
     }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+    
     
     @Override
     public int hashCode() {
