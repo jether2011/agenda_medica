@@ -6,11 +6,10 @@
                 template="/template/template.xhtml">
     <ui:define name="titulo">Pós Graduação Web e Mobile 2015</ui:define>              
     <ui:define name="conteudo">
-        <div align="rigth" style="margin-top: 5px; margin-right: 5px;" >            
-            <a href="#{facesContext.externalContext.requestContextPath}/j_spring_security_logout">
-                <span>#{(facesContext.externalContext.remoteUser).toUpperCase()}</span>
-                <input class="btn btn-lg btn-primary btn-block" type="button" value="Sair" style="width: 100px;height: 60px;"/>
-            </a>
+        <!--Div para exibir o usuário logado-->
+        <div align="left" style="margin-top: 5px; margin-right: 5px;">
+            <span style="border: #5cb85c;">Usuário Logado: </span>
+            <span>#{(facesContext.externalContext.remoteUser).toUpperCase()}</span>
         </div>
         <br/>
         <div align="center">
@@ -18,6 +17,9 @@
                 <p:dataTable var="lista" value="#{medicoBean.medicos}"
                              id="tabelaMedicos" style="width:70%">
                     <f:facet name="header">Lista de Medicos Cadastradas</f:facet>
+                    <p:column headerText="Código">
+                        <h:outputText value="#{lista.idMedico}" />
+                    </p:column>
                     <p:column headerText="Nome">
                         <h:outputText value="#{lista.nome}" />
                     </p:column>
@@ -60,10 +62,14 @@
                 <p:panelGrid id="panelAlterar" columns="2">
                     <h:outputText value="Nome:" />
                     <p:inputText value="#{medicoBean.medico.nome}" />
+                    <h:outputText value="CRM:" />
+                    <p:inputText value="#{medicoBean.medico.crm}" />
+                    <h:outputText value="Especialidade:" />
+                    <p:inputText value="#{medicoBean.medico.especialidade}" />
+                    <h:outputText value="Telefone:" />
+                    <p:inputText value="#{medicoBean.medico.telefone}" />
                     <h:outputText value="Email:" />
                     <p:inputText value="#{medicoBean.medico.email}" />
-                    <h:outputText value="Telefone:" />
-                    <!--<p:inputText value="{medicoBean.medico.telefone}" />-->
                 </p:panelGrid>
                 <p:commandButton value="Alterar"
                                  actionListener="#{medicoBean.alterar}"
@@ -71,7 +77,15 @@
                                  oncomplete="PF('dialogAlterar').hide()" />
             </p:dialog>
         </h:form>
-
+        <!--Botão sair-->
+        <div align="center" style="margin-top: 5px; margin-right: 5px;">
+            <br></br>
+            <br></br>
+            <br></br>
+            <a href="#{facesContext.externalContext.requestContextPath}/j_spring_security_logout">
+                <input class="btn btn-lg btn-primary btn-block" type="button" value="Sair" style="width: 100px;height: 60px;"/>
+            </a>
+        </div>
         <h:form id="formCadastrar">
             <p:dialog header="Cadastrar" widgetVar="dialogCadastrar" modal="true">
                 <p:panelGrid id="panelCadastrar" columns="2">

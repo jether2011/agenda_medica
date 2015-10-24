@@ -3,13 +3,14 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
-                template="/template/template.xhtml">
+                template="/template/template.xhtml"
+                xmlns:sec="http://www.springframework.org/security/facelets/tags">
     <ui:define name="titulo">Pós Graduação Web e Mobile 2015</ui:define>              
     <ui:define name="conteudo">
-        <div align="rigth" style="margin-top: 5px; margin-right: 5px;" >            
-            <a href="#{facesContext.externalContext.requestContextPath}/j_spring_security_logout">
-                <span>#{(facesContext.externalContext.remoteUser).toUpperCase()}</span>
-            </a>
+         <!--Div para exibir o usuário logado-->
+        <div align="left" style="margin-top: 5px; margin-right: 5px;">
+            <span style="border: #5cb85c;">Usuário Logado: </span>
+            <span>#{(facesContext.externalContext.remoteUser).toUpperCase()}</span>
         </div>
         <br/>
         <div align="center">
@@ -24,10 +25,10 @@
                         <h:outputText value="#{lista.status}" />
                     </p:column>
                     <p:column headerText="Data da Consulta">
-                        <h:outputText value="#{lista.data_consulta}" />
+                        <h:outputText value="#{lista.data}" />
                     </p:column>
                     <p:column headerText="Hora da Consulta">
-                        <h:outputText value="#{lista.hora_consulta}" />
+                        <h:outputText value="#{lista.hora}" />
                     </p:column>
                     <p:column headerText="Médico">
                         <h:outputText value="#{lista.idMedicoConsulta}" />
@@ -63,8 +64,6 @@
             <p:dialog header="Alterar" widgetVar="dialogAlterar" modal="true"
                       id="Alterar">
                 <p:panelGrid id="panelAlterar" columns="2">
-                    <h:outputText value="Código:"/>
-                    <p:inputText value="#{consultaBean.consulta.idConsulta}"/>
                     <h:outputText value="Status:"/>
                     <p:inputText value="#{consultaBean.consulta.status}"/>
                     <h:outputText value="Data da Consulta:" />
@@ -88,8 +87,6 @@
         <h:form id="formCadastrar">
             <p:dialog header="Cadastrar" widgetVar="dialogCadastrar" modal="true">
                 <p:panelGrid id="panelCadastrar" columns="2">
-                    <h:outputText value="Código:"/>
-                    <p:inputText value="#{consultaBean.consulta.idConsulta}"/>
                     <h:outputText value="Status:"/>
                     <p:inputText value="#{consultaBean.consulta.status}"/>
                     <h:outputText value="Data da Consulta:" />
@@ -104,12 +101,20 @@
                     <p:inputText value="#{consultaBean.consulta.obs}"/>
                 </p:panelGrid>
                 <p:commandButton value="Cadastrar"
-                                 actionListener="#{consultaBean.cadastrarConsulta}"
+                                 actionListener="#{consultaBean.cadastrar}"
                                  update=":formPrincipal:tabelaConsultas"
                                  oncomplete="PF('dialogCadastrar').hide()" />
             </p:dialog>
         </h:form>
-        <input class="btn btn-lg btn-primary btn-block" type="button" value="Sair" style="width: 100px;height: 60px;"/>
+        <!--Botão sair-->
+        <div align="center" style="margin-top: 5px; margin-right: 5px;">
+            <br></br>
+            <br></br>
+            <br></br>
+            <a href="#{facesContext.externalContext.requestContextPath}/j_spring_security_logout">
+                <input class="btn btn-lg btn-primary btn-block" type="button" value="Sair" style="width: 100px;height: 60px;"/>
+            </a>
+        </div>
         <h:form id="formExcluir">
             <p:confirmDialog id="Excluir"
                              message="Você gostaria de Deletar a consulta #{consultaBean.consulta.idConsulta}?"

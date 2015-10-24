@@ -6,11 +6,10 @@
                 template="/template/template.xhtml">
     <ui:define name="titulo">Pós Graduação Web e Mobile 2015</ui:define>              
     <ui:define name="conteudo">
-        <div align="rigth" style="margin-top: 5px; margin-right: 5px;" >            
-            <a href="#{facesContext.externalContext.requestContextPath}/j_spring_security_logout">
-                <span>#{(facesContext.externalContext.remoteUser).toUpperCase()}</span>
-                <input class="btn btn-lg btn-primary btn-block" type="button" value="Sair" style="width: 100px;height: 60px;"/>
-            </a>
+        <!--Div para exibir o usuário logado-->
+        <div align="left" style="margin-top: 5px; margin-right: 5px;">
+            <span style="border: #5cb85c;">Usuário Logado: </span>
+            <span>#{(facesContext.externalContext.remoteUser).toUpperCase()}</span>
         </div>
         <br/>
         <div align="center">
@@ -53,6 +52,15 @@
                 <p:commandButton value="Voltar ao Menu" id="backMenu"
                    action="#{usuarioBean.backMenu()}"/>
             </h:form>
+        </div>
+        <!--Botão sair-->
+        <div align="center" style="margin-top: 5px; margin-right: 5px;">
+            <br></br>
+            <br></br>
+            <br></br>
+            <a href="#{facesContext.externalContext.requestContextPath}/j_spring_security_logout">
+                <input class="btn btn-lg btn-primary btn-block" type="button" value="Sair" style="width: 100px;height: 60px;"/>
+            </a>
         </div>
         <h:form id="formAlterar">
             <p:dialog header="Alterar" widgetVar="dialogAlterar" modal="true"
@@ -97,7 +105,7 @@
                 <p:commandButton value="Cadastrar"
                                  actionListener="#{usuarioBean.cadastrar}"
                                  update=":formPrincipal:tabelaUsuarios"
-                                 oncomplete="PF('dialogCadastrar').show()" />
+                                 oncomplete="PF('dialogCadastrar').hide()" />
             </p:dialog>
         </h:form>
         <h:form id="formExcluir">

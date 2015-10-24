@@ -6,11 +6,10 @@
                 template="/template/template.xhtml">
     <ui:define name="titulo">Pós Graduação Web e Mobile 2015</ui:define>              
     <ui:define name="conteudo">
-        <div align="rigth" style="margin-top: 5px; margin-right: 5px;" >            
-            <a href="#{facesContext.externalContext.requestContextPath}/j_spring_security_logout">
-                <span>#{(facesContext.externalContext.remoteUser).toUpperCase()}</span>
-                <input class="btn btn-lg btn-primary btn-block" type="button" value="Sair" style="width: 100px;height: 60px;"/>
-            </a>
+        <!--Div para exibir o usuário logado-->
+        <div align="left" style="margin-top: 5px; margin-right: 5px;">
+            <span style="border: #5cb85c;">Usuário Logado: </span>
+            <span>#{(facesContext.externalContext.remoteUser).toUpperCase()}</span>
         </div>
         <br/>
         <div align="center">
@@ -18,21 +17,30 @@
                 <p:dataTable var="lista" value="#{pacienteBean.pacientes}"
                              id="tabelaPacientes" style="width:70%">
                     <f:facet name="header">Lista de Pacientes Cadastradas</f:facet>
+                    <p:column headerText="Código">
+                        <h:outputText value="#{lista.idPaciente}" />
+                    </p:column>
                     <p:column headerText="Nome">
                         <h:outputText value="#{lista.nome}" />
                     </p:column>
-                    <p:column headerText="CRM">
-                        <h:outputText value="#{lista.crm}" />
+                    <p:column headerText="CPF">
+                        <h:outputText value="#{lista.cpf}" />
                     </p:column>
-                    <p:column headerText="Especialidade">
-                        <h:outputText value="#{lista.especialidade}" />
+                    <p:column headerText="RG">
+                        <h:outputText value="#{lista.rg}" />
+                    </p:column>
+                    <p:column headerText="Email">
+                        <h:outputText value="#{lista.email}" />
                     </p:column>
                     <p:column headerText="Telefone">
                         <h:outputText value="#{lista.telefone}" />
                     </p:column>
-                    <p:column headerText="Email">
-                        <h:outputText value="#{lista.email}" />
-                    </p:column>                  
+                    <p:column headerText="Endereço">
+                        <h:outputText value="#{lista.endereco}" />
+                    </p:column>
+                    <p:column headerText="Sexo">
+                        <h:outputText value="#{lista.sexo}" />
+                    </p:column>
                     <p:column headerText="Ações">
                         <p:commandLink title="Alterar" update=":formAlterar:Alterar"
                                        oncomplete="PF('dialogAlterar').show()" immediate="true">
@@ -60,10 +68,18 @@
                 <p:panelGrid id="panelAlterar" columns="2">
                     <h:outputText value="Nome:" />
                     <p:inputText value="#{pacienteBean.paciente.nome}" />
+                    <h:outputText value="CPF:" />
+                    <p:inputText value="#{pacienteBean.paciente.cpf}" />
+                    <h:outputText value="RG:" />
+                    <p:inputText value="#{pacienteBean.paciente.rg}" />
                     <h:outputText value="Email:" />
                     <p:inputText value="#{pacienteBean.paciente.email}" />
                     <h:outputText value="Telefone:" />
-                    <!--<p:inputText value="{pacienteBean.paciente.telefone}" />-->
+                    <p:inputText value="#{pacienteBean.paciente.telefone}" />
+                    <h:outputText value="Endereço:" />
+                    <p:inputText value="#{pacienteBean.paciente.endereco}" />
+                    <h:outputText value="Sexo:" />
+                    <p:inputText value="#{pacienteBean.paciente.sexo}" />
                 </p:panelGrid>
                 <p:commandButton value="Alterar"
                                  actionListener="#{pacienteBean.alterar}"
@@ -71,7 +87,15 @@
                                  oncomplete="PF('dialogAlterar').hide()" />
             </p:dialog>
         </h:form>
-
+        <!--Botão sair-->
+        <div align="center" style="margin-top: 5px; margin-right: 5px;">
+            <br></br>
+            <br></br>
+            <br></br>
+            <a href="#{facesContext.externalContext.requestContextPath}/j_spring_security_logout">
+                <input class="btn btn-lg btn-primary btn-block" type="button" value="Sair" style="width: 100px;height: 60px;"/>
+            </a>
+        </div>
         <h:form id="formCadastrar">
             <p:dialog header="Cadastrar" widgetVar="dialogCadastrar" modal="true">
                 <p:panelGrid id="panelCadastrar" columns="2">
@@ -81,14 +105,14 @@
                     <p:inputText value="#{pacienteBean.paciente.cpf}" />
                     <h:outputText value="RG:" />
                     <p:inputText value="#{pacienteBean.paciente.rg}" />
-                    <h:outputText value="CRM:" />
-                    <p:inputText value="#{pacienteBean.paciente.crm}" />
-                    <h:outputText value="Especialidade:" />
-                    <p:inputText value="#{pacienteBean.paciente.especialidade}" />
                     <h:outputText value="Email:" />
                     <p:inputText value="#{pacienteBean.paciente.email}" />
                     <h:outputText value="Telefone:" />
                     <p:inputText value="#{pacienteBean.paciente.telefone}" />
+                    <h:outputText value="Endereço:" />
+                    <p:inputText value="#{pacienteBean.paciente.endereco}" />
+                    <h:outputText value="Sexo:" />
+                    <p:inputText value="#{pacienteBean.paciente.sexo}" />
                 </p:panelGrid>
                 <p:commandButton value="Cadastrar"
                                  actionListener="#{pacienteBean.cadastrar}"
