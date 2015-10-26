@@ -1,16 +1,16 @@
-var app = angular.module('dwmApp', []);
+var app = angular.module('agendaMedicaApp', []);
 
-//var urlPath = "http://192.168.0.5:9090/DWM2015/api/pessoa/";
-var urlPath = "http://localhost:8080/DWM2015/api/pessoa/";
-// var urlPath = "http://172.16.21.234:8080/DWM2015/api/pessoa/all";
+//var urlPath = "http://192.168.0.5:9090/DWM2015/api/consulta/";
+var urlPath = "http://localhost:8080/agenda_medica/api/consulta/";
+// var urlPath = "http://172.16.21.234:8080/DWM2015/api/consulta/all";
 
-app.controller('pessoaCtrl', function ($scope, $http, $timeout) {
-    $scope.pessoas = [];
-    $scope.loadPessoaApp = function () {
+app.controller('consultaCtrl', function ($scope, $http, $timeout) {
+    $scope.consultas = [];
+    $scope.loadConsultaApp = function () {
         $http.get(urlPath, {cache: false})
                 .success(function (response) {
                     //console.log(response);
-                    $scope.pessoas = response;
+                    $scope.consultas = response;
                 });
         $scope.config = {
             itemsPerPage: 5,
@@ -18,10 +18,10 @@ app.controller('pessoaCtrl', function ($scope, $http, $timeout) {
         }
     };
 
-    $scope.delete = function (idPessoa) {
-        console.log("tentar delete em: "+idPessoa);
+    $scope.delete = function (idConsulta) {
+        console.log("tentar delete em: "+idConsulta);
         $http({            
-            url: urlPath+idPessoa,             
+            url: urlPath+idConsulta,             
             method: 'DELETE'            
         }).success(function(status) {
             console.log("Success: ");
@@ -33,26 +33,26 @@ app.controller('pessoaCtrl', function ($scope, $http, $timeout) {
     };
 
     var interval = setInterval(function(){
-       $scope.loadPessoaApp()
+       $scope.loadConsultaApp()
     }, 2000);
-    //$scope.loadPessoaApp();
+    //$scope.loadConsultaApp();
 });
 
 app.controller('formCtrl', function($scope, $http, $timeout) {    
-    $scope.save = function(pessoa) {  
-        var values = JSON.stringify(pessoa);     
+    $scope.save = function(consulta) {  
+        var values = JSON.stringify(consulta);     
         console.log(values);
         $http({            
-            url: 'http://localhost:8080/DWM2015/api/pessoa/',             
-            // url: 'http://172.16.21.234:8080/DWM2015/api/pessoa/',
+            url: 'http://localhost:8080/agenda_medica/api/consulta/',             
+            // url: 'http://172.16.21.234:8080/DWM2015/api/consulta/',
             method: 'POST',         
             data: values,
             headers: {'Content-Type':'application/json; charset=utf-8'}           
         }).success(function(status) {
             console.log("Success: ");
             console.log(status);
-            $scope.pessoa.nome="";
-            $scope.pessoa.email="";            
+            $scope.consulta.nome="";
+            $scope.consulta.email="";            
         }).error(function(status) {
             console.log("Error: ");
             console.log(status);
