@@ -1,0 +1,131 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+    <ui:define name="titulo">Pós Graduação Web e Mobile 2015</ui:define>              
+    <ui:define name="conteudo">
+         <!--Div para exibir o usuário logado-->
+        <div align="left" style="margin-top: 5px; margin-right: 5px;">
+            <span style="border: #5cb85c;">Usuário Logado: </span>
+            <span>#{(facesContext.externalContext.remoteUser).toUpperCase()}</span>
+        </div>
+        <br/>
+        <div align="center">
+            <h:form id="formPrincipal">
+                <p:dataTable var="lista" value="#{consultaBean.consultas}"
+                             id="tabelaConsultas" style="width:70%">
+                    <f:facet name="header">Lista de Consultas Cadastradas</f:facet>
+                    <p:column headerText="Cód. Consulta">
+                        <h:outputText value="#{lista.idConsulta}" />
+                    </p:column>
+                    <p:column headerText="Status">
+                        <h:outputText value="#{lista.status}" />
+                    </p:column>
+                    <p:column headerText="Data da Consulta">
+                        <h:outputText value="#{lista.data}" />
+                    </p:column>
+                    <p:column headerText="Hora da Consulta">
+                        <h:outputText value="#{lista.hora}" />
+                    </p:column>
+                    <p:column headerText="Médico">
+                        <h:outputText value="#{lista.idMedicoConsulta}" />
+                    </p:column>
+                    <p:column headerText="Paciente">
+                        <h:outputText value="#{lista.idPacienteConsulta}" />
+                    </p:column>
+                    <p:column headerText="OBS">
+                        <h:outputText value="#{lista.obs}" />
+                    </p:column>
+                    <p:column headerText="Ações">
+                        <p:commandLink title="Alterar" update=":formAlterar:Alterar"
+                                       oncomplete="PF('dialogAlterar').show()" immediate="true">
+                            <h:graphicImage library="img" name="edit.png" />
+                            <f:setPropertyActionListener target="#{consultaBean.consulta}"
+                                                         value="#{lista}" />
+                        </p:commandLink>
+                        <p:commandLink title="Excluir" update=":formExcluir:Excluir"
+                                       oncomplete="PF('confirmation').show()" immediate="true">
+                            <h:graphicImage library="img" name="remove.png" />
+                            <f:setPropertyActionListener target="#{consultaBean.consulta}"
+                                                         value="#{lista}" />
+                        </p:commandLink>
+                    </p:column>
+                </p:dataTable><br/>
+                <p:commandButton value="Cadastrar" id="cadastrar"
+                                 oncomplete="PF('dialogCadastrar').show()" />
+                <p:commandButton value="Voltar ao Menu" id="backMenu"
+                   action="#{consultaBean.backMenu()}"/>
+            </h:form>
+        </div>
+        <h:form id="formAlterar">
+            <p:dialog header="Alterar" widgetVar="dialogAlterar" modal="true"
+                      id="Alterar">
+                <p:panelGrid id="panelAlterar" columns="2">
+                    <h:outputText value="Status:"/>
+                    <p:inputText value="#{consultaBean.consulta.status}"/>
+                    <h:outputText value="Data da Consulta:" />
+                    <p:inputText value="#{consultaBean.consulta.data}"/>
+                    <h:outputText value="Hora da Consulta:"/>
+                    <p:inputText value="#{consultaBean.consulta.hora}"/>
+                    <h:outputText value="Médico:"/>
+                    <p:inputText value="#{consultaBean.consulta.idMedicoConsulta}"/>
+                    <h:outputText value="Paciente:"/>
+                    <p:inputText value="#{consultaBean.consulta.idPacienteConsulta}"/>
+                    <h:outputText value="Observação:"/>
+                    <p:inputText value="#{consultaBean.consulta.obs}" />
+                </p:panelGrid>
+                <p:commandButton value="Alterar"
+                                 actionListener="#{consultaBean.alterar}"
+                                 update=":formPrincipal:tabelaConsultas"
+                                 oncomplete="PF('dialogAlterar').hide()" />
+            </p:dialog>
+        </h:form>
+
+        <h:form id="formCadastrar">
+            <p:dialog header="Cadastrar" widgetVar="dialogCadastrar" modal="true">
+                <p:panelGrid id="panelCadastrar" columns="2">
+                    <h:outputText value="Status:"/>
+                    <p:inputText value="#{consultaBean.consulta.status}"/>
+                    <h:outputText value="Data da Consulta:" />
+                    <p:inputText value="#{consultaBean.consulta.data}"/>
+                    <h:outputText value="Hora da Consulta:"/>
+                    <p:inputText value="#{consultaBean.consulta.hora}"/>
+                    <h:outputText value="Médico:"/>
+                    <p:inputText value="#{consultaBean.consulta.idMedicoConsulta}"/>
+                    <h:outputText value="Paciente:"/>
+                    <p:inputText value="#{consultaBean.consulta.idPacienteConsulta}"/>
+                    <h:outputText value="Observação:"/>
+                    <p:inputText value="#{consultaBean.consulta.obs}"/>
+                </p:panelGrid>
+                <p:commandButton value="Cadastrar"
+                                 actionListener="#{consultaBean.cadastrar}"
+                                 update=":formPrincipal:tabelaConsultas"
+                                 oncomplete="PF('dialogCadastrar').hide()" />
+            </p:dialog>
+        </h:form>
+        <!--Botão sair-->
+        <div align="center" style="margin-top: 5px; margin-right: 5px;">
+            <br></br>
+            <br></br>
+            <br></br>
+            <a href="#{facesContext.externalContext.requestContextPath}/j_spring_security_logout">
+                <input class="btn btn-lg btn-primary btn-block" type="button" value="Sair" style="width: 100px;height: 60px;"/>
+            </a>
+        </div>
+        <h:form id="formExcluir">
+            <p:confirmDialog id="Excluir"
+                             message="Você gostaria de Deletar a consulta #{consultaBean.consulta.idConsulta}?"
+                             header="Excluir" severity="alert" widgetVar="confirmation">
+
+                <p:commandButton id="confirm" value="Sim"
+                                 oncomplete="PF('confirmation').hide()"
+                                 actionListener="#{consultaBean.excluir}"
+                                 update=":formPrincipal:tabelaConsultas" />
+                <p:commandButton id="decline" value="Não"
+                                 onclick="PF('confirmation').hide()" type="button" />
+            </p:confirmDialog>
+        </h:form>
+    </ui:define>
+</ui:composition>

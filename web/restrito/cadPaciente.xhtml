@@ -1,0 +1,137 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/template.xhtml">
+    <ui:define name="titulo">Pós Graduação Web e Mobile 2015</ui:define>              
+    <ui:define name="conteudo">
+        <!--Div para exibir o usuário logado-->
+        <div align="left" style="margin-top: 5px; margin-right: 5px;">
+            <span style="border: #5cb85c;">Usuário Logado: </span>
+            <span>#{(facesContext.externalContext.remoteUser).toUpperCase()}</span>
+        </div>
+        <br/>
+        <div align="center">
+            <h:form id="formPrincipal">
+                <p:dataTable var="lista" value="#{pacienteBean.pacientes}"
+                             id="tabelaPacientes" style="width:70%">
+                    <f:facet name="header">Lista de Pacientes Cadastradas</f:facet>
+                    <p:column headerText="Código">
+                        <h:outputText value="#{lista.idPaciente}" />
+                    </p:column>
+                    <p:column headerText="Nome">
+                        <h:outputText value="#{lista.nome}" />
+                    </p:column>
+                    <p:column headerText="CPF">
+                        <h:outputText value="#{lista.cpf}" />
+                    </p:column>
+                    <p:column headerText="RG">
+                        <h:outputText value="#{lista.rg}" />
+                    </p:column>
+                    <p:column headerText="Email">
+                        <h:outputText value="#{lista.email}" />
+                    </p:column>
+                    <p:column headerText="Telefone">
+                        <h:outputText value="#{lista.telefone}" />
+                    </p:column>
+                    <p:column headerText="Endereço">
+                        <h:outputText value="#{lista.endereco}" />
+                    </p:column>
+                    <p:column headerText="Sexo">
+                        <h:outputText value="#{lista.sexo}" />
+                    </p:column>
+                    <p:column headerText="Ações">
+                        <p:commandLink title="Alterar" update=":formAlterar:Alterar"
+                                       oncomplete="PF('dialogAlterar').show()" immediate="true">
+                            <h:graphicImage library="img" name="edit.png" />
+                            <f:setPropertyActionListener target="#{pacienteBean.paciente}"
+                                                         value="#{lista}" />
+                        </p:commandLink>
+                        <p:commandLink title="Excluir" update=":formExcluir:Excluir"
+                                       oncomplete="PF('confirmation').show()" immediate="true">
+                            <h:graphicImage library="img" name="remove.png" />
+                            <f:setPropertyActionListener target="#{pacienteBean.paciente}"
+                                                         value="#{lista}" />
+                        </p:commandLink>
+                    </p:column>
+                </p:dataTable><br/>
+                <p:commandButton value="Cadastrar" id="cadastrar"
+                                 oncomplete="PF('dialogCadastrar').show()" />
+                <p:commandButton value="Voltar ao Menu" id="backMenu"
+                   action="#{pacienteBean.backMenu()}"/>
+            </h:form>
+        </div>
+        <h:form id="formAlterar">
+            <p:dialog header="Alterar" widgetVar="dialogAlterar" modal="true"
+                      id="Alterar">
+                <p:panelGrid id="panelAlterar" columns="2">
+                    <h:outputText value="Nome:" />
+                    <p:inputText value="#{pacienteBean.paciente.nome}" />
+                    <h:outputText value="CPF:" />
+                    <p:inputText value="#{pacienteBean.paciente.cpf}" />
+                    <h:outputText value="RG:" />
+                    <p:inputText value="#{pacienteBean.paciente.rg}" />
+                    <h:outputText value="Email:" />
+                    <p:inputText value="#{pacienteBean.paciente.email}" />
+                    <h:outputText value="Telefone:" />
+                    <p:inputText value="#{pacienteBean.paciente.telefone}" />
+                    <h:outputText value="Endereço:" />
+                    <p:inputText value="#{pacienteBean.paciente.endereco}" />
+                    <h:outputText value="Sexo:" />
+                    <p:inputText value="#{pacienteBean.paciente.sexo}" />
+                </p:panelGrid>
+                <p:commandButton value="Alterar"
+                                 actionListener="#{pacienteBean.alterar}"
+                                 update=":formPrincipal:tabelaPacientes"
+                                 oncomplete="PF('dialogAlterar').hide()" />
+            </p:dialog>
+        </h:form>
+        <!--Botão sair-->
+        <div align="center" style="margin-top: 5px; margin-right: 5px;">
+            <br></br>
+            <br></br>
+            <br></br>
+            <a href="#{facesContext.externalContext.requestContextPath}/j_spring_security_logout">
+                <input class="btn btn-lg btn-primary btn-block" type="button" value="Sair" style="width: 100px;height: 60px;"/>
+            </a>
+        </div>
+        <h:form id="formCadastrar">
+            <p:dialog header="Cadastrar" widgetVar="dialogCadastrar" modal="true">
+                <p:panelGrid id="panelCadastrar" columns="2">
+                    <h:outputText value="Nome:" />
+                    <p:inputText value="#{pacienteBean.paciente.nome}" />
+                    <h:outputText value="CPF:" />
+                    <p:inputText value="#{pacienteBean.paciente.cpf}" />
+                    <h:outputText value="RG:" />
+                    <p:inputText value="#{pacienteBean.paciente.rg}" />
+                    <h:outputText value="Email:" />
+                    <p:inputText value="#{pacienteBean.paciente.email}" />
+                    <h:outputText value="Telefone:" />
+                    <p:inputText value="#{pacienteBean.paciente.telefone}" />
+                    <h:outputText value="Endereço:" />
+                    <p:inputText value="#{pacienteBean.paciente.endereco}" />
+                    <h:outputText value="Sexo:" />
+                    <p:inputText value="#{pacienteBean.paciente.sexo}" />
+                </p:panelGrid>
+                <p:commandButton value="Cadastrar"
+                                 actionListener="#{pacienteBean.cadastrar}"
+                                 update=":formPrincipal:tabelaPacientes"
+                                 oncomplete="PF('dialogCadastrar').hide()" />
+            </p:dialog>
+        </h:form>
+        <h:form id="formExcluir">
+            <p:confirmDialog id="Excluir"
+                             message="Você gostaria de Deletar o #{pacienteBean.paciente.nome}?"
+                             header="Excluir" severity="alert" widgetVar="confirmation">
+
+                <p:commandButton id="confirm" value="Sim"
+                                 oncomplete="PF('confirmation').hide()"
+                                 actionListener="#{pacienteBean.excluir}"
+                                 update=":formPrincipal:tabelaPacientes" />
+                <p:commandButton id="decline" value="Não"
+                                 onclick="PF('confirmation').hide()" type="button" />
+            </p:confirmDialog>
+        </h:form>
+    </ui:define>
+</ui:composition>
