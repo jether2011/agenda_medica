@@ -1,7 +1,7 @@
 var app = angular.module('agendaMedicaApp', []);
 
 //var urlPath = "http://192.168.0.5:9090/DWM2015/api/consulta/";
-var urlPath = "http://localhost:8080/agenda_medica/api/consulta/";
+var urlPath = "http://localhost:8080/agenda_medica/";
 // var urlPath = "http://172.16.21.234:8080/DWM2015/api/consulta/all";
 
 app.controller('consultaCtrl', function ($scope, $http, $timeout) {
@@ -43,7 +43,7 @@ app.controller('formCtrl', function($scope, $http, $timeout) {
         var values = JSON.stringify(consulta);     
         console.log(values);
         $http({            
-            url: 'http://localhost:8080/agenda_medica/api/consulta/',             
+            url: 'http://localhost:8080/agenda_medica/',             
             // url: 'http://172.16.21.234:8080/DWM2015/api/consulta/',
             method: 'POST',         
             data: values,
