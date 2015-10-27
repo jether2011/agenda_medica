@@ -14,16 +14,16 @@
         <script src="js/bootstrap.datatables.min.js"></script>
         <script src="js/bootstrap-table.js"></script>
         <script src="js/angular.min.js"></script>
-        <script src="js/angularApp.js"></script>        
+        <script src="js/angularApp.js"></script>
         <script type="text/javascript">
-            $(document).ready(function () {                
+            $(document).ready(function () {
                 $('#tabelaDados').DataTable({
                     data: loadDataTable()
-                });               
+                });
             });
             function loadDataTable() {
                 //var urlPath = "http://192.168.0.5:9090/DWM2015/api/Consulta/";
-                var urlPath = "http://localhost:8080/agenda_medica/";
+                var urlPath = "http://localhost:8080/agenda_medica/api/consulta/";
                 //var urlPath = "http://172.16.21.234:8080/DWM2015/api/Consulta/all";
 
                 $.ajax({
@@ -42,9 +42,17 @@
                                 var html = '<tr><th width=\"150\">'
                                         + data[i].idConsulta
                                         + '</th><th width=\"150\">'
-                                        + data[i].nome
+                                        + data[i].data
                                         + '</th><th>'
-                                        + data[i].email
+                                        + data[i].hora
+                                        + '</th></tr>'
+                                        + data[i].idMedico
+                                        + '</th></tr>'
+                                        + data[i].idPaciente
+                                        + '</th></tr>'
+                                        + data[i].obs
+                                        + '</th></tr>'
+                                        + data[i].status
                                         + '</th></tr>';
                                 $("#tBodyValores").append(html);
                             };
@@ -58,14 +66,14 @@
         <div class="container">
             <h2>Diversos</h2><br/>
             <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#tabela">Informações Consultas</a></li> 
-                <li><a data-toggle="tab" href="#formConsulta">Cadastro Consulta</a></li>                  
+                <li class="active"><a data-toggle="tab" href="#tabela">Informações Consultas</a></li>
+                <li><a data-toggle="tab" href="#formConsulta">Cadastro Consulta</a></li>
             </ul>
             <div class="tab-content">
                 <div id="tabela" class="tab-pane fade in active" ng-controller="ConsultaCtrl"><br/><br/>
                     <h3>Com Bootstrap</h3><br/>
-                    <table id="tabelaDados" data-cache="false"                           
-                           class="table table-striped table-bordered table-responsive" 
+                    <table id="tabelaDados" data-cache="false"
+                           class="table table-striped table-bordered table-responsive"
                            cellspacing="0" width="100%">
                         <thead>
                             <tr>
@@ -78,44 +86,19 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Nome</th>
-                                <th>Email</th>                
+                                <th>Email</th>
                             </tr>
                         </tfoot>
-                        <tbody id="tBodyValores"></tbody>                        
-                    </table>
-                    <br/><br/>
-                    <!-- <h3>Com AngularJS</h3><br/>
-                    <table id="tabelaAngular" class="table table-striped table-bordered table-responsive" cellspacing="0" width="100%" at-table at-paginated at-list="Consultas" at-config="config">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nome</th>
-                                <th>Email</th> 
-                                <th></th>               
-                            </tr>
-                        </thead> 
-                        <tfoot>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nome</th>
-                                <th>Email</th>                
-                                <th></th>
-                            </tr>
-                        </tfoot>
-                        <tbody>
-                            <tr ng-repeat="p in Consultas">
-                                <td at-implicit at-sortable width="150" at-initial-sorting="asc">{{ p.idConsulta }}</td>
-                                <td at-implicit at-sortable width="150">{{ p.nome }}</td>
-                                <td at-implicit at-sortable>{{ p.email }}</td>
-                                <td><p>
+                        <tbody id="tBodyValores">
+                            <td><p>
                                         <a ng-click="delete(p.idConsulta)" href="#" class="btn btn-danger btn-small">
                                             <span class="glyphicon glyphicon-remove"></span>
                                         </a>
                                     </p>
                                 </td>
-                            </tr>                            
                         </tbody>
-                    </table> -->
+                    </table>
+                    <br/><br/>
                     <at-pagination at-list="Consultas" at-config="config"></at-pagination>
                     <br/><br/><br/>
                 </div>
