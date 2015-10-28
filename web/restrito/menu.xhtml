@@ -3,8 +3,8 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
-                template="/template/template.xhtml">
-<!--                xmlns:sec="http://www.springframework.org/security/facelets/tags">-->
+                template="/template/template.xhtml"
+                xmlns:sec="http://www.springframework.org/security/facelets/tags">
     <ui:define name="titulo">Agenda Médica</ui:define>
     <ui:define name="conteudo">
         <!--Div para exibir o usuário logado-->
@@ -20,12 +20,11 @@
                         MENU
                     </h1><br/>
 <!--                Regra para exibir opção de cadastro de usuário
-                    apenas para os usuários categorizados como admin
+                    apenas para os usuários categorizados como admin -->                
                 <sec:ifAnyGranted roles="ROLE_USUARIO">
-                    
-                </sec:ifAnyGranted>-->
-                <p:commandButton value="Cadastrar Usuários" id="cadastrarUsuario"
+                    <p:commandButton value="Cadastrar Usuários" id="cadastrarUsuario"
                     action="#{menuBean.cadastroUsuario()}"/>
+                </sec:ifAnyGranted>
                 <p:commandButton value="Cadastrar Medicos" id="cadastrarMedico"
                     action="#{menuBean.cadastroMedico()}"/>
                 <p:commandButton value="Cadastrar Pacientes" id="cadastrarPaciente"
