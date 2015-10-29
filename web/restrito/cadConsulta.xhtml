@@ -21,19 +21,19 @@
                         <h:outputText value="#{lista.idConsulta}" />
                     </p:column>
                     <p:column headerText="Status">
-                        <h:outputText value="#{lista.status}" />
+                        <h:outputText value="#{lista.statusConsulta}" />
                     </p:column>
                     <p:column headerText="Data da Consulta">
-                        <h:outputText value="#{lista.data}" />
+                        <h:outputText value="#{lista.dataConsulta}" />
                     </p:column>
                     <p:column headerText="Hora da Consulta">
-                        <h:outputText value="#{lista.hora}" />
+                        <h:outputText value="#{lista.horaConsulta}" />
                     </p:column>
                     <p:column headerText="Médico">
-                        <h:outputText value="#{lista.idMedicoConsulta}" />
+                        <h:outputText value="#{lista.idMedico}" />
                     </p:column>
                     <p:column headerText="Paciente">
-                        <h:outputText value="#{lista.idPacienteConsulta}" />
+                        <h:outputText value="#{lista.idPaciente}" />
                     </p:column>
                     <p:column headerText="OBS">
                         <h:outputText value="#{lista.obs}" />
@@ -54,7 +54,7 @@
                     </p:column>
                 </p:dataTable><br/>
                 <p:commandButton value="Cadastrar" id="cadastrar"
-                                 oncomplete="PF('dialogCadastrar').show()" />
+                                 oncomplete="PF('dialogCadastrar').show()" immediate="true"/>
                 <p:commandButton value="Voltar ao Menu" id="backMenu"
                    action="#{consultaBean.backMenu()}"/>
             </h:form>
@@ -64,15 +64,15 @@
                       id="Alterar">
                 <p:panelGrid id="panelAlterar" columns="2">
                     <h:outputText value="Status:"/>
-                    <p:inputText value="#{consultaBean.consulta.status}"/>
+                    <p:inputText value="#{consultaBean.consulta.statusConsulta}"/>
                     <h:outputText value="Data da Consulta:" />
-                    <p:inputText value="#{consultaBean.consulta.data}"/>
+                    <p:inputText value="#{consultaBean.consulta.dataConsulta}"/>
                     <h:outputText value="Hora da Consulta:"/>
-                    <p:inputText value="#{consultaBean.consulta.hora}"/>
+                    <p:inputText value="#{consultaBean.consulta.horaConsulta}"/>
                     <h:outputText value="Médico:"/>
-                    <p:inputText value="#{consultaBean.consulta.idMedicoConsulta}"/>
+                    <p:inputText value="#{consultaBean.consulta.idMedico}"/>
                     <h:outputText value="Paciente:"/>
-                    <p:inputText value="#{consultaBean.consulta.idPacienteConsulta}"/>
+                    <p:inputText value="#{consultaBean.consulta.idPaciente}"/>
                     <h:outputText value="Observação:"/>
                     <p:inputText value="#{consultaBean.consulta.obs}" />
                 </p:panelGrid>
@@ -87,15 +87,15 @@
             <p:dialog header="Cadastrar" widgetVar="dialogCadastrar" modal="true">
                 <p:panelGrid id="panelCadastrar" columns="2">
                     <h:outputText value="Status:"/>
-                    <p:inputText value="#{consultaBean.consulta.status}"/>
+                    <p:inputText value="#{consultaBean.consulta.statusConsulta}"/>
                     <h:outputText value="Data da Consulta:" />
-                    <p:inputText value="#{consultaBean.consulta.data}"/>
+                    <p:inputText value="#{consultaBean.consulta.dataConsulta}"/>
                     <h:outputText value="Hora da Consulta:"/>
-                    <p:inputText value="#{consultaBean.consulta.hora}"/>
+                    <p:inputText value="#{consultaBean.consulta.horaConsulta}"/>
                     <h:outputText value="Médico:"/>
-                    <p:inputText value="#{consultaBean.consulta.idMedicoConsulta}"/>
+                    <p:inputText value="#{consultaBean.consulta.idMedico}"/>
                     <h:outputText value="Paciente:"/>
-                    <p:inputText value="#{consultaBean.consulta.idPacienteConsulta}"/>
+                    <p:inputText value="#{consultaBean.consulta.idPaciente}"/>
                     <h:outputText value="Observação:"/>
                     <p:inputText value="#{consultaBean.consulta.obs}"/>
                 </p:panelGrid>

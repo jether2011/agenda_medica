@@ -51,7 +51,7 @@
                     </p:column>
                 </p:dataTable><br/>
                 <p:commandButton value="Cadastrar" id="cadastrar"
-                                 oncomplete="PF('dialogCadastrar').show()" />
+                                 oncomplete="PF('dialogCadastrar').show()" immediate="true"/>
                 <p:commandButton value="Voltar ao Menu" id="backMenu"
                    action="#{medicoBean.backMenu()}"/>
             </h:form>
