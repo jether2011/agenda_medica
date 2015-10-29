@@ -25,10 +25,11 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author pensadorx
  */
+
 @Entity
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(propOrder={"idConsulta", "data", "hora", "idMedicoConsulta", "idPacienteConsulta", "obs", "status"})
+@XmlType(propOrder={"idConsulta", "data", "hora", "idMedicoConsulta", "idPacienteConsulta", "obs", "status", "medico", "paciente"})
 public class Consulta implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
