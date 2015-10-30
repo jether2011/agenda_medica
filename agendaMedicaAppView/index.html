@@ -116,7 +116,7 @@
                             	<div class="form-group">
                             		<div class="col-sm-2 control-label">
                             			<label for="statusConsulta">Status da Consulta: </label>
-		                                <select name="statusConsulta" id="statusConsulta" ng-model="Consulta.status" class="form-control" id="statusConsulta" required>
+		                                <select name="statusConsulta" id="statusConsulta" ng-model="Consulta.statusConsulta" class="form-control" id="statusConsulta" required>
 		                                	<option value="" selected="">Selecione o Status</option>
 		                                	<option value="1">Agendado</option>
 		                                	<option value="2">Remarcado</option>
@@ -152,7 +152,8 @@
                                 <div class="form-group">
                                     <label for="obsConsulta" class="col-sm-2 control-label">OBS</label>
                                     <div class="col-sm-3">
-                                        <input type="text" ng-model="Consulta.obs" class="form-control" id="obsConsulta" placeholder="Observação" required/>
+                                        <textarea name="" id="obsConsulta" cols="30" rows="10" ng-model="Consulta.obs" placeholder="Observação"></textarea>
+                                        <!-- <input type="text" ng-model="consulta.obs" class="form-control" id="obsConsulta" placeholder="Observação"/> -->
                                     </div><br>
                                 </div><br><br>
                                 <div class="form-group">

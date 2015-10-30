@@ -47,11 +47,12 @@ app.controller('formCtrl', function($scope, $http, $timeout) {
         }).success(function(status) {
             console.log("Success: ");
             console.log(status);
+            // $scope.consulta.idConsulta="";
             $scope.consulta.statusConsulta="";
             $scope.consulta.dataConsulta="";
             $scope.consulta.horaConsulta="";
-            $scope.consulta.idMedico="";
-            $scope.consulta.idPaciente="";
+            $scope.consulta.idMedicoConsulta="";
+            $scope.consulta.idPacienteConsulta="";
             $scope.consulta.obs="";
         }).error(function(status) {
             console.log("Error: ");

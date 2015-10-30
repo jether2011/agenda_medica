@@ -21,7 +21,7 @@
                     </h1><br/>
 <!--                Regra para exibir opção de cadastro de usuário
                     apenas para os usuários categorizados como admin -->                
-                <sec:ifAnyGranted roles="ROLE_USUARIO">
+                <sec:ifAnyGranted roles="ROLE_ADMIN">
                     <p:commandButton value="Cadastrar Usuários" id="cadastrarUsuario"
                     action="#{menuBean.cadastroUsuario()}"/>
                 </sec:ifAnyGranted>

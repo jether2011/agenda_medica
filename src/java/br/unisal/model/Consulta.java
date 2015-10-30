@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlType;
 @Entity
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(propOrder={"idConsulta", "dataConsulta", "horaConsulta", "idMedico", "idPaciente", "obs", "statusConsulta"})
+@XmlType(propOrder={"idConsulta", "dataConsulta", "horaConsulta", "idMedicoConsulta", "idPacienteConsulta", "obs", "statusConsulta", "idMedico", "idPaciente"})
 public class Consulta implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,19 +45,19 @@ public class Consulta implements Serializable {
     private String dataConsulta;
     @Column(name="hora_consulta")
     private String horaConsulta;
-    @Column(name="idMedico")
-    private Integer idMedico;
-    @Column(name="idPaciente")
-    private Integer idPaciente;
+    @Column(name="idMedicoConsulta")
+    private Integer idMedicoConsulta;
+    @Column(name="idPacienteConsulta")
+    private Integer idPacienteConsulta;
     @Column(name="obs", columnDefinition = "text")
     private String obs;
     @Column(name="statusConsulta")
     private Integer statusConsulta;
     
-//    @ManyToOne
-//    Medico idMedico;
-//    @ManyToOne
-//    Paciente idPaciente;
+    @ManyToOne
+    Medico idMedico;
+    @ManyToOne
+    Paciente idPaciente;
 
     public Consulta() {
     }
@@ -86,20 +86,20 @@ public class Consulta implements Serializable {
         this.horaConsulta = horaConsulta;
     }
 
-    public Integer getIdMedico() {
-        return idMedico;
+    public Integer getIdMedicoConsulta() {
+        return idMedicoConsulta;
     }
 
-    public void setIdMedico(Integer idMedico) {
-        this.idMedico = idMedico;
+    public void setIdMedicoConsulta(Integer idMedicoConsulta) {
+        this.idMedicoConsulta = idMedicoConsulta;
     }
 
-    public Integer getIdPaciente() {
-        return idPaciente;
+    public Integer getIdPacienteConsulta() {
+        return idPacienteConsulta;
     }
 
-    public void setIdPaciente(Integer idPaciente) {
-        this.idPaciente = idPaciente;
+    public void setIdPacienteConsulta(Integer idPacienteConsulta) {
+        this.idPacienteConsulta = idPacienteConsulta;
     }
 
     public String getObs() {
@@ -116,6 +116,22 @@ public class Consulta implements Serializable {
 
     public void setStatusConsulta(Integer statusConsulta) {
         this.statusConsulta = statusConsulta;
+    }
+
+    public Medico getIdMedico() {
+        return idMedico;
+    }
+
+    public void setIdMedico(Medico idMedico) {
+        this.idMedico = idMedico;
+    }
+
+    public Paciente getIdPaciente() {
+        return idPaciente;
+    }
+
+    public void setIdPaciente(Paciente idPaciente) {
+        this.idPaciente = idPaciente;
     }
     
     @Override
@@ -144,8 +160,8 @@ public class Consulta implements Serializable {
     @Override
     public String toString() {
         return "Consulta{" + "idConsulta=" + idConsulta + ", dataConsulta=" + dataConsulta + 
-                ", horaConsulta=" + horaConsulta + ", idMedico=" + idMedico + 
-                ", idPaciente=" + idPaciente + ", obs=" + obs + 
+                ", horaConsulta=" + horaConsulta + ", idMedicoConsulta=" + idMedicoConsulta + 
+                ", idPacienteConsulta=" + idPacienteConsulta + ", obs=" + obs + 
                 ", statusConsulta=" + statusConsulta +'}';
     }
 }
