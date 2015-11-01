@@ -1,8 +1,5 @@
 var app = angular.module('agendaMedicaApp', []);
-
-//var urlPath = "http://192.168.0.5:9090/DWM2015/api/consulta/";
-var urlPath = "http://localhost:8080/agenda_medica/";
-// var urlPath = "http://172.16.21.234:8080/DWM2015/api/consulta/all";
+var urlPath = "http://localhost:8080/agenda_medica/api/consulta/";
 
 app.controller('consultaCtrl', function ($scope, $http, $timeout) {
     $scope.consultas = [];
@@ -13,19 +10,19 @@ app.controller('consultaCtrl', function ($scope, $http, $timeout) {
                     $scope.consultas = response;
                 });
         $scope.config = {
-            itemsPerPage: 5,
+            itemsPerPage: 7,
             fillLastPage: true
         }
     };
 
     $scope.delete = function (idConsulta) {
         console.log("tentar delete em: "+idConsulta);
-        $http({            
-            url: urlPath+idConsulta,             
-            method: 'DELETE'            
+        $http({
+            url: urlPath+idConsulta,
+            method: 'DELETE'
         }).success(function(status) {
             console.log("Success: ");
-            console.log(status);            
+            console.log(status);
         }).error(function(status) {
             console.log("Error: ");
             console.log(status);
@@ -38,21 +35,25 @@ app.controller('consultaCtrl', function ($scope, $http, $timeout) {
     //$scope.loadConsultaApp();
 });
 
-app.controller('formCtrl', function($scope, $http, $timeout) {    
-    $scope.save = function(consulta) {  
-        var values = JSON.stringify(consulta);     
+app.controller('formCtrl', function($scope, $http, $timeout) {
+    $scope.save = function(consulta) {
+        var values = JSON.stringify(consulta);
         console.log(values);
-        $http({            
-            url: 'http://localhost:8080/agenda_medica/',             
-            // url: 'http://172.16.21.234:8080/DWM2015/api/consulta/',
-            method: 'POST',         
+        $http({
+            url: 'http://localhost:8080/agenda_medica/api/consulta/',
+            method: 'POST',
             data: values,
-            headers: {'Content-Type':'application/json; charset=utf-8'}           
+            headers: {'Content-Type':'application/json; charset=utf-8'}
         }).success(function(status) {
             console.log("Success: ");
             console.log(status);
-            $scope.consulta.nome="";
-            $scope.consulta.email="";            
+            // $scope.consulta.idConsulta="";
+            $scope.consulta.statusConsulta="";
+            $scope.consulta.dataConsulta="";
+            $scope.consulta.horaConsulta="";
+            $scope.consulta.idMedicoConsulta="";
+            $scope.consulta.idPacienteConsulta="";
+            $scope.consulta.obs="";
         }).error(function(status) {
             console.log("Error: ");
             console.log(status);

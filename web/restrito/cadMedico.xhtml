@@ -7,9 +7,9 @@
     <ui:define name="titulo">Pós Graduação Web e Mobile 2015</ui:define>              
     <ui:define name="conteudo">
         <!--Div para exibir o usuário logado-->
-        <div align="left" style="margin-top: 5px; margin-right: 5px;">
+        <div align="left" class="bg-info" style="margin-right: 0px;">
             <span style="border: #5cb85c;">Usuário Logado: </span>
-            <span>#{(facesContext.externalContext.remoteUser).toUpperCase()}</span>
+            <span class="user-name">#{(facesContext.externalContext.remoteUser).toUpperCase()}</span>
         </div>
         <br/>
         <div align="center">
@@ -51,7 +51,7 @@
                     </p:column>
                 </p:dataTable><br/>
                 <p:commandButton value="Cadastrar" id="cadastrar"
-                                 oncomplete="PF('dialogCadastrar').show()" />
+                                 oncomplete="PF('dialogCadastrar').show()" immediate="true"/>
                 <p:commandButton value="Voltar ao Menu" id="backMenu"
                    action="#{medicoBean.backMenu()}"/>
             </h:form>

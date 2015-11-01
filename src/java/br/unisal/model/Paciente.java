@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlType;
 @Entity
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(propOrder={"idPaciente", "nome", "email"})
+@XmlType(propOrder={"idPaciente", "nome", "email", "telefone", "cpf", "rg", "sexo", "endereco"})
 public class Paciente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

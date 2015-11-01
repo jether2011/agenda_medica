@@ -25,34 +25,39 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author pensadorx
  */
+
 @Entity
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(propOrder={"idConsulta", "data", "hora", "idMedico", "idPaciente", "obs", "status"})
+@XmlType(propOrder={"idConsulta", "dataConsulta", "horaConsulta", "idMedicoConsulta", "idPacienteConsulta", "obs", "statusConsulta", "idMedico", "idPaciente"})
 public class Consulta implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_consulta")
     private Integer idConsulta;
+//    @Column(name="data_consulta")
+//    @Temporal(TemporalType.TIMESTAMP)
+//    private Date dataConsulta;
+//    @Column(name="hora_consulta")
+//    @Temporal(TemporalType.TIMESTAMP) Jether Não conseguimos converter ... 
+//    private Date horaConsulta;
     @Column(name="data_consulta")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date data;
+    private String dataConsulta;
     @Column(name="hora_consulta")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date hora;
+    private String horaConsulta;
     @Column(name="idMedicoConsulta")
     private Integer idMedicoConsulta;
     @Column(name="idPacienteConsulta")
     private Integer idPacienteConsulta;
     @Column(name="obs", columnDefinition = "text")
     private String obs;
-    @Column(name="status")
-    private Integer status;
+    @Column(name="statusConsulta")
+    private Integer statusConsulta;
     
     @ManyToOne
-    Medico medico;
+    Medico idMedico;
     @ManyToOne
-    Paciente paciente;
+    Paciente idPaciente;
 
     public Consulta() {
     }
@@ -65,20 +70,20 @@ public class Consulta implements Serializable {
         this.idConsulta = idConsulta;
     }
 
-    public Date getData() {
-        return data;
+    public String getDataConsulta() {
+        return dataConsulta;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setDataConsulta(String dataConsulta) {
+        this.dataConsulta = dataConsulta;
     }
 
-    public Date getHora() {
-        return hora;
+    public String getHoraConsulta() {
+        return horaConsulta;
     }
 
-    public void setHora(Date hora) {
-        this.hora = hora;
+    public void setHoraConsulta(String horaConsulta) {
+        this.horaConsulta = horaConsulta;
     }
 
     public Integer getIdMedicoConsulta() {
@@ -105,28 +110,28 @@ public class Consulta implements Serializable {
         this.obs = obs;
     }
 
-    public Integer getStatus() {
-        return status;
+    public Integer getStatusConsulta() {
+        return statusConsulta;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setStatusConsulta(Integer statusConsulta) {
+        this.statusConsulta = statusConsulta;
     }
 
-    public Medico getMedico() {
-        return medico;
+    public Medico getIdMedico() {
+        return idMedico;
     }
 
-    public void setMedico(Medico medico) {
-        this.medico = medico;
+    public void setIdMedico(Medico idMedico) {
+        this.idMedico = idMedico;
     }
 
-    public Paciente getPaciente() {
-        return paciente;
+    public Paciente getIdPaciente() {
+        return idPaciente;
     }
 
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
+    public void setIdPaciente(Paciente idPaciente) {
+        this.idPaciente = idPaciente;
     }
     
     @Override
@@ -154,9 +159,9 @@ public class Consulta implements Serializable {
 
     @Override
     public String toString() {
-        return "Consulta{" + "idConsulta=" + idConsulta + ", data=" + data + 
-                ", hora=" + hora + ", idMedicoConsulta=" + idMedicoConsulta + 
-                ", idPacienteConsulta=" + idPacienteConsulta + 
-                ", obs=" + obs + ", estatus=" + status +'}';
+        return "Consulta{" + "idConsulta=" + idConsulta + ", dataConsulta=" + dataConsulta + 
+                ", horaConsulta=" + horaConsulta + ", idMedicoConsulta=" + idMedicoConsulta + 
+                ", idPacienteConsulta=" + idPacienteConsulta + ", obs=" + obs + 
+                ", statusConsulta=" + statusConsulta +'}';
     }
 }

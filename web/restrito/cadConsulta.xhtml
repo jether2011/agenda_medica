@@ -7,9 +7,9 @@
     <ui:define name="titulo">Pós Graduação Web e Mobile 2015</ui:define>              
     <ui:define name="conteudo">
          <!--Div para exibir o usuário logado-->
-        <div align="left" style="margin-top: 5px; margin-right: 5px;">
+        <div align="left" class="bg-info" style="margin-right: 0px;">
             <span style="border: #5cb85c;">Usuário Logado: </span>
-            <span>#{(facesContext.externalContext.remoteUser).toUpperCase()}</span>
+            <span class="user-name">#{(facesContext.externalContext.remoteUser).toUpperCase()}</span>
         </div>
         <br/>
         <div align="center">
@@ -21,13 +21,13 @@
                         <h:outputText value="#{lista.idConsulta}" />
                     </p:column>
                     <p:column headerText="Status">
-                        <h:outputText value="#{lista.status}" />
+                        <h:outputText value="#{lista.statusConsulta}" />
                     </p:column>
                     <p:column headerText="Data da Consulta">
-                        <h:outputText value="#{lista.data}" />
+                        <h:outputText value="#{lista.dataConsulta}" />
                     </p:column>
                     <p:column headerText="Hora da Consulta">
-                        <h:outputText value="#{lista.hora}" />
+                        <h:outputText value="#{lista.horaConsulta}" />
                     </p:column>
                     <p:column headerText="Médico">
                         <h:outputText value="#{lista.idMedicoConsulta}" />
@@ -54,7 +54,7 @@
                     </p:column>
                 </p:dataTable><br/>
                 <p:commandButton value="Cadastrar" id="cadastrar"
-                                 oncomplete="PF('dialogCadastrar').show()" />
+                                 oncomplete="PF('dialogCadastrar').show()" immediate="true"/>
                 <p:commandButton value="Voltar ao Menu" id="backMenu"
                    action="#{consultaBean.backMenu()}"/>
             </h:form>
@@ -64,11 +64,11 @@
                       id="Alterar">
                 <p:panelGrid id="panelAlterar" columns="2">
                     <h:outputText value="Status:"/>
-                    <p:inputText value="#{consultaBean.consulta.status}"/>
+                    <p:inputText value="#{consultaBean.consulta.statusConsulta}"/>
                     <h:outputText value="Data da Consulta:" />
-                    <p:inputText value="#{consultaBean.consulta.data}"/>
+                    <p:inputText value="#{consultaBean.consulta.dataConsulta}"/>
                     <h:outputText value="Hora da Consulta:"/>
-                    <p:inputText value="#{consultaBean.consulta.hora}"/>
+                    <p:inputText value="#{consultaBean.consulta.horaConsulta}"/>
                     <h:outputText value="Médico:"/>
                     <p:inputText value="#{consultaBean.consulta.idMedicoConsulta}"/>
                     <h:outputText value="Paciente:"/>
@@ -87,11 +87,11 @@
             <p:dialog header="Cadastrar" widgetVar="dialogCadastrar" modal="true">
                 <p:panelGrid id="panelCadastrar" columns="2">
                     <h:outputText value="Status:"/>
-                    <p:inputText value="#{consultaBean.consulta.status}"/>
+                    <p:inputText value="#{consultaBean.consulta.statusConsulta}"/>
                     <h:outputText value="Data da Consulta:" />
-                    <p:inputText value="#{consultaBean.consulta.data}"/>
+                    <p:inputText value="#{consultaBean.consulta.dataConsulta}"/>
                     <h:outputText value="Hora da Consulta:"/>
-                    <p:inputText value="#{consultaBean.consulta.hora}"/>
+                    <p:inputText value="#{consultaBean.consulta.horaConsulta}"/>
                     <h:outputText value="Médico:"/>
                     <p:inputText value="#{consultaBean.consulta.idMedicoConsulta}"/>
                     <h:outputText value="Paciente:"/>
